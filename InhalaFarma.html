@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Controles de Sistemas Presurizados — Tecnología Farmacéutica</title>
+    <title>pMDI | Controles</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* ===== VARIABLES Y RESET ===== */
@@ -617,7 +617,7 @@
                 <!-- Trachea -->
                 <rect x="15" y="5" width="2" height="10" rx="1" fill="var(--primary)"/>
             </svg>
-            pMDI | Controles
+            Sistemas de administración pulmonar | Controles
         </a>
         <ul class="nav-links" id="navLinks">
             <li><a href="#introduccion">Introducción</a></li>
@@ -644,7 +644,7 @@
             <div class="hero-stats">
                 <div class="stat-box"><div class="stat-num">1–5μm</div><div class="stat-lbl">Tamaño óptimo de partícula</div></div>
                 <div class="stat-box"><div class="stat-num">5</div><div class="stat-lbl">Controles de calidad clave</div></div>
-                <div class="stat-box"><div class="stat-num">16</div><div class="stat-lbl">Preguntas de test</div></div>
+                <div class="stat-box"><div class="stat-num">12</div><div class="stat-lbl">Preguntas de test</div></div>
             </div>
             <div class="hero-btns">
                 <a href="#test" class="btn-secondary" onclick="setTimeout(startTest,400)">Ir al test →</a>
@@ -1001,7 +1001,7 @@
             <!-- Intro screen -->
             <div class="test-intro" id="testIntro">
                 <h3>📝 Test de evaluación</h3>
-                <p>16 preguntas tipo test sobre controles de sistemas presurizados. Solo hay una respuesta correcta por pregunta.</p>
+                <p>12 preguntas tipo test sobre controles de sistemas presurizados. Solo hay una respuesta correcta por pregunta.</p>
                 <div class="test-rules">
                     <div class="rule"><span class="r-icon">🔀</span><span>Las preguntas se muestran en orden aleatorio cada vez</span></div>
                     <div class="rule"><span class="r-icon">🙈</span><span>Las respuestas correctas se revelan al terminar</span></div>
@@ -1015,7 +1015,7 @@
             <div id="testQuestion" style="display:none;">
                 <div class="progress-wrap">
                     <div class="progress-track"><div class="progress-fill" id="progFill"></div></div>
-                    <span class="progress-lbl" id="progLbl">1/16</span>
+                    <span class="progress-lbl" id="progLbl">1/12</span>
                 </div>
                 <div class="question-card">
                     <div class="question-num" id="qNum">Pregunta 1</div>
@@ -1107,199 +1107,150 @@
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
     // ===== TEST DATA =====
-    // Parsed from CSV — 16 questions, each with 5 options (A-E), 1 correct, explanation
     const rawQuestions = [
         {
-            q: "¿Cuál es el principal objetivo del control de uniformidad de dosis emitida en inhaladores presurizados?",
+            q: "En un pMDI de 200 descargas con una cámara dosificadora de 100 µL que contiene una solución de salbutamol de 500 µg/mL, ¿Cuál es la dosis nominal por actuación?",
             opts: [
-                "Verificar la presión del cartucho",
-                "Verificar que cada dosis contenga la cantidad correcta de principio activo",
-                "Medir el tamaño del dispositivo",
-                "Controlar el color del aerosol",
-                "Evaluar el sabor del medicamento"
+                "0,25 µg",
+                "0,5 µg",
+                "1 µg",
+                "5 µg",
+                "10 µg"
             ],
-            correct: 1, // 0-indexed
-            exp: "La uniformidad de dosis emitida tiene como objetivo verificar que cada dosis que sale del envase tenga la cantidad correcta de principio activo, garantizando eficacia terapéutica y evitando sobre/infradosificación."
+            correct: 0,
+            exp: "La dosis nominal se calcula multiplicando el volumen por la concentración y dividiéndolo por el número de descargas: 100 µL = 0,1 mL → 0,1 mL × 500 µg/mL = 50 µg → 50 µg / 200 descargas = 0,25 µg de dosis nominal."
         },
         {
-            q: "¿Qué técnica analítica se utiliza comúnmente para cuantificar las dosis individuales en el control de uniformidad de dosis emitida?",
+            q: "Señala la afirmación incorrecta respecto a la dosis nominal, dosis emitida y dosis en partículas finas:",
             opts: [
-                "Espectroscopia infrarroja",
-                "Resonancia magnética nuclear",
-                "Cromatografía líquida de alta resolución (HPLC)",
-                "Microscopía electrónica",
-                "Calorimetría diferencial de barrido"
+                "La dosis nominal depende de la concentración y volumen de la cámara dosificadora",
+                "La dosis emitida siempre es menor o igual que la dosis nominal",
+                "La fracción de partículas finas se calcula respecto a la dosis emitida",
+                "La dosis emitida incluye pérdidas en válvula y boquilla",
+                "La dosis en partículas finas siempre es mayor que la dosis emitida"
             ],
-            correct: 2,
-            exp: "El HPLC es la técnica analítica estándar para cuantificar el principio activo en dosis individuales recogidas de inhaladores presurizados, por su precisión y sensibilidad."
+            correct: 4,
+            exp: "La dosis en partículas finas es una fracción de la dosis emitida, por lo que siempre será menor."
         },
         {
-            q: "¿En qué momentos del ciclo de vida del producto se debe evaluar la uniformidad de dosis emitida?",
+            q: "Un inhalador tiene una dosis emitida media de 120 µg y un análisis por impactador muestra que el 35% de la masa corresponde a partículas <5 µm. ¿Cuál es la dosis en partículas finas?",
             opts: [
-                "Solo al inicio del uso",
-                "Solo al final del uso",
-                "Al inicio, a la mitad y al final del uso del dispositivo",
-                "Únicamente cuando el paciente lo solicita",
-                "Solo durante la fabricación"
+                "12 µg",
+                "24 µg",
+                "42 µg",
+                "60 µg",
+                "78 µg"
             ],
             correct: 2,
-            exp: "La uniformidad de dosis debe evaluarse con el dispositivo recién abierto, cuando se ha expulsado aproximadamente la mitad del producto y cuando está a punto de agotarse, para garantizar consistencia durante toda la vida útil del producto."
+            exp: "La dosis en partículas finas se calcula multiplicando la dosis emitida por el porcentaje de partículas finas: 120 µg × 0,35 = 42 µg."
+        },
+        {
+            q: "Señala la afirmación incorrecta sobre la deposición de partículas en el sistema respiratorio:",
+            opts: [
+                "Las partículas <1 µm tienden a ser exhaladas",
+                "Las partículas de 1-5 µm alcanzan bronquios y alveolos",
+                "Las partículas >10 µm suelen quedar retenidas en boca o nariz",
+                "Las partículas de 5-10 µm se depositan principalmente en faringe",
+                "Las partículas <1 µm presentan el mayor depósito pulmonar"
+            ],
+            correct: 4,
+            exp: "Las partículas <1 µm se exhalan con facilidad y no presentan depósito pulmonar significativo."
+        },
+        {
+            q: "Un pMDI posee una cámara de 60 µL con una formulación de budesonida de 400 µg/mL. Si durante la emisión se pierde el 20% del fármaco en válvula y boquilla, ¿Cuál es aproximadamente la dosis emitida?",
+            opts: [
+                "9,6 µg",
+                "14,4 µg",
+                "19,2 µg",
+                "24 µg",
+                "No puede calcularse con los datos proporcionados"
+            ],
+            correct: 4,
+            exp: "Primeramente se debe calcular cuál es la dosis nominal, y a partir de esta, aplicar una regla de 3 para obtener la dosis emitida. Sin embargo es necesario conocer el número de dosis del pMDI para dicho cálculo."
+        },
+        {
+            q: "En el control de uniformidad de dosis emitida de un pMDI, ¿Por qué se analizan dosis al inicio, mitad y final del envase?",
+            opts: [
+                "Para evaluar la estabilidad química del propelente",
+                "Para comprobar si el dispositivo mantiene la misma dosis durante toda su vida útil",
+                "Para medir la presión interna del cartucho",
+                "Para estimar el tamaño de partícula",
+                "Para calibrar el contador de dosis"
+            ],
+            correct: 1,
+            exp: "El objetivo es verificar que la dosis emitida permanece consistente durante todo el uso del inhalador."
+        },
+        {
+            q: "Señala la afirmación incorrecta acerca de los impactadores en cascada:",
+            opts: [
+                "Permiten separar partículas según su diámetro aerodinámico",
+                "Se emplean para estimar la fracción respirable del aerosol",
+                "Simulan la deposición pulmonar in vitro",
+                "Permiten determinar la dosis emitida total directamente",
+                "Son herramientas clave para caracterizar aerosoles farmacéuticos"
+            ],
+            correct: 3,
+            exp: "Los impactadores no determinan directamente la dosis emitida total; se usan para estudiar la distribución de tamaños."
+        },
+        {
+            q: "Un inhalador tiene una dosis nominal de 200 µg, una dosis emitida de 160 µg y una fracción de partículas finas del 50%. ¿Cuál es la dosis en partículas finas?",
+            opts: [
+                "50 µg",
+                "80 µg",
+                "100 µg",
+                "160 µg",
+                "200 µg"
+            ],
+            correct: 1,
+            exp: "La dosis en partículas finas se calcula multiplicando la dosis emitida por el porcentaje de partículas finas: 160 µg × 0,50 = 80 µg."
+        },
+        {
+            q: "¿Cuál es la principal razón por la que una velocidad de salida excesiva del aerosol reduce la eficacia terapéutica?",
+            opts: [
+                "Aumenta la volatilización del propelente",
+                "Provoca impacto del aerosol en la garganta",
+                "Reduce la solubilidad del fármaco",
+                "Disminuye la presión interna del cartucho",
+                "Incrementa el tamaño de partícula"
+            ],
+            correct: 1,
+            exp: "Una velocidad alta favorece la impactación en orofaringe antes de que las partículas alcancen los pulmones."
+        },
+        {
+            q: "¿Cuál es la principal utilidad clínica de las cámaras espaciadoras en pMDI?",
+            opts: [
+                "Incrementar la presión del aerosol",
+                "Reducir el tamaño de partícula",
+                "Reducir la velocidad del aerosol y mejorar el depósito pulmonar",
+                "Aumentar la dosis nominal",
+                "Incrementar la vida útil del cartucho"
+            ],
+            correct: 2,
+            exp: "Las cámaras espaciadoras reducen la velocidad de salida y permiten que más partículas respirables alcancen el pulmón."
         },
         {
             q: "¿Cuál es el rango de tamaño de partícula óptimo para que el medicamento alcance las vías respiratorias inferiores?",
             opts: [
-                "10–15 μm",
-                "1–5 μm",
-                "0,1–0,5 μm",
-                "15–20 μm",
-                "20–30 μm"
+                "<1 µm",
+                "1-5 µm",
+                "5-10 µm",
+                ">10 µm",
+                "Ninguna de las anteriores"
             ],
             correct: 1,
-            exp: "Las partículas con diámetro aerodinámico entre 1 y 5 μm son las que pueden depositarse adecuadamente en las vías respiratorias inferiores. Partículas mayores se depositan en la garganta y las muy pequeñas son exhaladas."
+            exp: "Partículas <1 µm son exhaladas por el paciente, entre 5-10 µm no alcanzan las vías respiratorias inferiores y las de >10 µm presentan deposición orofaríngea por impacto."
         },
         {
-            q: "¿Qué sucede con las partículas del aerosol que son demasiado grandes (>5 μm)?",
+            q: "Si un aerosol produce partículas mayoritariamente de 8 µm, ¿Cuál sería la consecuencia más probable desde el punto de vista terapéutico?",
             opts: [
-                "Se absorben mejor en los pulmones",
-                "Se quedan depositadas en la garganta",
-                "Se exhalan completamente",
-                "Aumentan la eficacia terapéutica",
-                "Llegan directamente a los alveolos"
-            ],
-            correct: 1,
-            exp: "Las partículas con diámetro aerodinámico mayor de 5 μm impactan y se depositan en la orofaringe y garganta debido a su inercia, sin alcanzar las vías respiratorias inferiores."
-        },
-        {
-            q: "¿Qué instrumento se utiliza para medir la distribución del tamaño aerodinámico de partículas?",
-            opts: [
-                "Espectrofotómetro",
-                "Impactador en cascada",
-                "Balanza analítica",
-                "pHmetro",
-                "Viscosímetro"
-            ],
-            correct: 1,
-            exp: "Los impactadores en cascada son los instrumentos estándar para medir la distribución del tamaño aerodinámico de partículas (APSD), separando las partículas por tamaño en diferentes etapas de impacto."
-        },
-        {
-            q: "¿Qué es la fracción de partículas finas (FPF)?",
-            opts: [
-                "El peso total del inhalador",
-                "La cantidad de propelente en el cartucho",
-                "El porcentaje de masa de aerosol contenida en partículas menores de 5 μm",
-                "El número de actuaciones del dispositivo",
-                "La presión interna del cartucho"
+                "Depósito alveolar elevado",
+                "Exhalación completa del aerosol",
+                "Depósito predominante en faringe",
+                "Absorción sistémica inmediata",
+                "Ninguna de las anteriores"
             ],
             correct: 2,
-            exp: "La FPF (Fine Particle Fraction) se define como el porcentaje de la masa del aerosol contenida en partículas con diámetro aerodinámico menor de 5 μm, que es la fracción capaz de alcanzar los pulmones."
-        },
-        {
-            q: "¿Cuál es la diferencia entre dosis nominal y dosis emitida?",
-            opts: [
-                "Son exactamente iguales",
-                "La dosis nominal es mayor porque no considera pérdidas en el dispositivo",
-                "La dosis emitida es siempre mayor",
-                "La dosis nominal solo se mide en laboratorio",
-                "No existe diferencia práctica"
-            ],
-            correct: 1,
-            exp: "La dosis nominal es la cantidad teórica de fármaco en el reservorio por actuación, mientras que la dosis emitida es menor porque considera las pérdidas en la boquilla, válvula y espaciador."
-        },
-        {
-            q: "¿Por qué es importante la fuerza de actuación en los inhaladores presurizados?",
-            opts: [
-                "Para cambiar el color del aerosol",
-                "Para asegurar la apertura completa de la válvula y evitar variaciones en la dosis",
-                "Para aumentar el tamaño del dispositivo",
-                "Para modificar el sabor del medicamento",
-                "No tiene ninguna importancia"
-            ],
-            correct: 1,
-            exp: "Una fuerza de actuación adecuada es fundamental para asegurar la apertura completa de la válvula y garantizar la liberación consistente de la dosis. Una fuerza insuficiente resulta en dosis menores y mayor variabilidad."
-        },
-        {
-            q: "¿Qué parámetro relaciona mejor la dosis del inhalador con la eficacia clínica?",
-            opts: [
-                "El peso del dispositivo",
-                "El color del cartucho",
-                "La dosis de partículas finas (fine particle dose)",
-                "El volumen total del inhalador",
-                "La temperatura de almacenamiento"
-            ],
-            correct: 2,
-            exp: "La dosis de partículas finas (FPF × dosis emitida) es el parámetro que mejor predice la cantidad de fármaco que alcanzará los pulmones y, por tanto, la respuesta clínica."
-        },
-        {
-            q: "¿Cuál es la función de las cámaras de inhalación (espaciadores)?",
-            opts: [
-                "Aumentar la velocidad del aerosol",
-                "Reducir la velocidad del aerosol y permitir que las partículas se hagan más pequeñas",
-                "Aumentar el tamaño de las partículas",
-                "Eliminar el principio activo",
-                "Cambiar la composición química del fármaco"
-            ],
-            correct: 1,
-            exp: "Las cámaras de inhalación reducen la velocidad del aerosol, permiten la evaporación del propelente para reducir el tamaño de partícula y disminuyen el impacto orofaríngeo, mejorando la deposición pulmonar."
-        },
-        {
-            q: "¿Qué debe verificar el control de número de descargas por envase?",
-            opts: [
-                "Que el color sea uniforme",
-                "Que el dispositivo proporcione al menos las dosis declaradas en el etiquetado",
-                "Que el envase sea reciclable",
-                "Que el precio sea adecuado",
-                "Que el diseño sea atractivo"
-            ],
-            correct: 1,
-            exp: "Este control verifica que el sistema presurizado proporcione al menos el número de dosis recogidas en el etiquetado, asegurando que el paciente no se quede sin medicamento antes de lo esperado."
-        },
-        {
-            q: "¿Qué recomendación hace la FDA para asegurar el cumplimiento y seguridad del paciente respecto al número de dosis?",
-            opts: [
-                "Cambiar el color del dispositivo",
-                "Aumentar el tamaño del envase",
-                "Uso de contadores de dosis",
-                "Reducir el precio",
-                "Modificar el sabor"
-            ],
-            correct: 2,
-            exp: "La FDA recomienda el uso de contadores de dosis para que los pacientes puedan conocer cuántas dosis quedan disponibles, asegurando el cumplimiento terapéutico y evitando que usen un inhalador vacío."
-        },
-        {
-            q: "¿Qué sucede si la velocidad de salida del aerosol es demasiado alta?",
-            opts: [
-                "Mejora la deposición pulmonar",
-                "El medicamento impacta en la garganta en lugar de llegar a los pulmones",
-                "Aumenta la eficacia terapéutica",
-                "Las partículas se hacen más pequeñas",
-                "No tiene ningún efecto"
-            ],
-            correct: 1,
-            exp: "Si la velocidad de salida es excesiva, las partículas impactan por inercia en la orofaringe y garganta sin alcanzar las vías respiratorias inferiores, reduciendo la eficacia terapéutica."
-        },
-        {
-            q: "¿Cómo se calcula la dosis de partículas finas (fine particle dose)?",
-            opts: [
-                "Peso del dispositivo × volumen",
-                "Fracción de partículas finas (FPF) × dosis emitida",
-                "Dosis nominal ÷ presión",
-                "Temperatura × concentración",
-                "Número de actuaciones × peso molecular"
-            ],
-            correct: 1,
-            exp: "La dosis de partículas finas se calcula multiplicando la fracción de partículas finas (FPF) por la dosis emitida, resultando en la masa de fármaco en partículas capaces de alcanzar los pulmones."
-        },
-        {
-            q: "¿Cuál de los siguientes enunciados sobre la dosis de partículas finas es CORRECTO?",
-            opts: [
-                "Es igual a la dosis nominal",
-                "Es mayor que la dosis emitida",
-                "Es la que tiene mejor depósito pulmonar porque las partículas miden menos de 5 μm",
-                "No puede medirse in vitro",
-                "Solo aplica a inhaladores de polvo seco"
-            ],
-            correct: 2,
-            exp: "La dosis en partículas finas (partículas <5 μm) es la que tiene mejor depósito pulmonar y es siempre menor que la dosis emitida. Se estima in vitro con impactadores en cascada y aplica a inhaladores presurizados (pMDI)."
+            exp: "Las partículas de 5-10 µm se depositan principalmente en la garganta y vías superiores, reduciendo la llegada al pulmón."
         }
     ];
 
